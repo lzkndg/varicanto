@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Über uns">
+  <section class="page-hero section-tint">
+    <div class="container">
+      <div class="eyebrow">Über uns</div>
+      <h1>Wer wir sind</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="container prose">
+      <!-- TODO: replace with the real founding story and history. -->
+      <p>
+        Varicanto ist ein kleines Vokalensemble aus Liechtenstein und der Region. Uns
+        verbindet die Freude am mehrstimmigen Gesang und daran, gemeinsam neue Stücke zu
+        erarbeiten – von traditionellen Weihnachtsliedern bis zu zeitgenössischen Klängen.
+      </p>
+      <p>
+        Es macht uns grossen Spass, miteinander zu proben, musikalisch Neues zu entdecken
+        und unsere Lieder bei Konzerten und Anlässen mit einem Publikum zu teilen. Genauso
+        wichtig ist uns die Kameradschaft und die gemeinsame Zeit abseits der Proben.
+      </p>
+      <p>
+        Bist du interessiert, bei uns mitzusingen? Wir freuen uns über neue Stimmen –
+        melde dich unter <a href="mailto:info@varicanto.li">info@varicanto.li</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding-block: 4rem 3rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-style: italic;
+    margin: 0.2em 0 0;
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .prose p {
+    margin-bottom: 1.3em;
+  }
+
+  .prose a {
+    color: var(--wine);
+  }
+</style>

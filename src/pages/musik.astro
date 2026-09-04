@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { tracks } from '../data/tracks';
+---
+
+<Layout title="Musik">
+  <section class="page-hero section-tint">
+    <div class="container">
+      <div class="eyebrow">Musik</div>
+      <h1>Aufnahmen</h1>
+      <p class="lead">Fünf Lieder, aufgenommen zur Weihnachtszeit 2022.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <ul class="track-list">
+        {tracks.map((track) => (
+          <li class="track">
+            <p class="track-title">{track.title}</p>
+            <audio controls preload="none" src={`/audio/${track.file}`}></audio>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding-block: 4rem 3rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-style: italic;
+    margin: 0.2em 0 0.6em;
+  }
+
+  .lead {
+    max-width: 55ch;
+    opacity: 0.85;
+  }
+
+  .track-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .track {
+    background: var(--cream);
+    border: 1px solid var(--sand-deep);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+  }
+
+  .track-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 0.9em;
+  }
+
+  .track audio {
+    width: 100%;
+  }
+</style>

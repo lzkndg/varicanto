@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { upcomingEvents, pastEvents } from '../data/events';
+---
+
+<Layout title="Auftritte">
+  <section class="page-hero section-tint">
+    <div class="container">
+      <div class="eyebrow">Auftritte</div>
+      <h1>Konzerte & Anlässe</h1>
+      <p class="lead">
+        Möchten Sie Varicanto für Ihren Anlass anfragen? Schreiben Sie uns an
+        <a href="mailto:info@varicanto.li">info@varicanto.li</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Kommende Auftritte</h2>
+      {upcomingEvents.length > 0 ? (
+        <ol class="event-list">
+          {upcomingEvents.map((event) => (
+            <li>
+              <span class="event-date">{event.date}</span>
+              <span class="event-title">{event.title}</span>
+              <span class="event-place">{event.place}</span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">
+          Aktuell sind keine Auftritte öffentlich gelistet – schaut bald wieder vorbei.
+        </p>
+      )}
+    </div>
+  </section>
+
+  {pastEvents.length > 0 && (
+    <section class="section-tint">
+      <div class="container">
+        <h2>Vergangene Auftritte</h2>
+        <ol class="event-list">
+          {pastEvents.map((event) => (
+            <li>
+              <span class="event-date">{event.date}</span>
+              <span class="event-title">{event.title}</span>
+              <span class="event-place">{event.place}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<style>
+  .page-hero {
+    padding-block: 4rem 3rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-style: italic;
+    margin: 0.2em 0 0.6em;
+  }
+
+  .lead {
+    max-width: 55ch;
+  }
+
+  .lead a {
+    color: var(--wine);
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+
+  .empty-state {
+    opacity: 0.75;
+  }
+
+  .event-list {
+    border-top: 1px solid #241d2b26;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .event-list li {
+    border-bottom: 1px solid #241d2b26;
+    grid-template-columns: 140px 1fr auto;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    display: grid;
+  }
+
+  .event-date {
+    font-family: var(--font-mono);
+    color: var(--wine);
+    font-size: 0.85rem;
+  }
+
+  .event-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .event-place {
+    color: var(--plum);
+    opacity: 0.9;
+  }
+
+  @media (width <= 780px) {
+    .event-list li {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

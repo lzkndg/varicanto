@@ -1,0 +1,349 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Varicanto – Vokalensemble aus Liechtenstein. Gesang zwischen Tradition und neuen Klängen.',
+} = Astro.props;
+
+const nav = [
+  { href: '/', label: 'Start' },
+  { href: '/ueber-uns/', label: 'Über uns' },
+  { href: '/auftritte/', label: 'Auftritte' },
+  { href: '/musik/', label: 'Musik' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="de-CH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} · Varicanto</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="mark">Varicanto</a>
+        <nav aria-label="Hauptnavigation">
+          <ul>
+            {nav.map((item) => (
+              <li><a href={item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="waveform-divider" aria-hidden="true">
+        <svg viewBox="0 0 400 40" preserveAspectRatio="none">
+          <g fill="var(--cream)">
+            <rect x="0" y="17" width="4" height="6" />
+            <rect x="10" y="12" width="4" height="16" />
+            <rect x="20" y="6" width="4" height="28" />
+            <rect x="30" y="14" width="4" height="12" />
+            <rect x="40" y="2" width="4" height="36" />
+            <rect x="50" y="10" width="4" height="20" />
+            <rect x="60" y="16" width="4" height="8" />
+            <rect x="70" y="4" width="4" height="32" />
+            <rect x="80" y="12" width="4" height="16" />
+            <rect x="90" y="8" width="4" height="24" />
+            <rect x="100" y="15" width="4" height="10" />
+            <rect x="110" y="2" width="4" height="36" />
+            <rect x="120" y="10" width="4" height="20" />
+            <rect x="130" y="16" width="4" height="8" />
+            <rect x="140" y="6" width="4" height="28" />
+            <rect x="150" y="12" width="4" height="16" />
+            <rect x="160" y="4" width="4" height="32" />
+            <rect x="170" y="14" width="4" height="12" />
+            <rect x="180" y="8" width="4" height="24" />
+            <rect x="190" y="17" width="4" height="6" />
+            <rect x="200" y="2" width="4" height="36" />
+            <rect x="210" y="10" width="4" height="20" />
+            <rect x="220" y="15" width="4" height="10" />
+            <rect x="230" y="6" width="4" height="28" />
+            <rect x="240" y="12" width="4" height="16" />
+            <rect x="250" y="4" width="4" height="32" />
+            <rect x="260" y="14" width="4" height="12" />
+            <rect x="270" y="8" width="4" height="24" />
+            <rect x="280" y="17" width="4" height="6" />
+            <rect x="290" y="2" width="4" height="36" />
+            <rect x="300" y="10" width="4" height="20" />
+            <rect x="310" y="16" width="4" height="8" />
+            <rect x="320" y="6" width="4" height="28" />
+            <rect x="330" y="12" width="4" height="16" />
+            <rect x="340" y="4" width="4" height="32" />
+            <rect x="350" y="14" width="4" height="12" />
+            <rect x="360" y="8" width="4" height="24" />
+            <rect x="370" y="17" width="4" height="6" />
+            <rect x="380" y="10" width="4" height="20" />
+            <rect x="390" y="16" width="4" height="8" />
+          </g>
+        </svg>
+      </div>
+      <div class="container footer-inner">
+        <div>
+          <p class="footer-title">Varicanto</p>
+          <p class="footer-tagline">Vokalensemble, Liechtenstein</p>
+        </div>
+        <div>
+          <p><a href="mailto:info@varicanto.li">info@varicanto.li</a></p>
+        </div>
+      </div>
+      <p class="copyright container">© {new Date().getFullYear()} Varicanto</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --paper: #f7f2e9;
+    --sand: #efe4d3;
+    --sand-deep: #e2d3b8;
+    --ink: #241d2b;
+    --wine: #7a2e3a;
+    --wine-light: #a5495a;
+    --gold: #b99146;
+    --cream: #f3ead9;
+    --pine: #3f5a4d;
+    --plum: #55465e;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Work Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --radius: 2px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5em;
+    font-weight: 600;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .container {
+    width: min(1100px, 100% - 3rem);
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--wine);
+    border-radius: var(--radius);
+    color: var(--ink);
+    padding: 0.85em 1.6em;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn:hover {
+    background: var(--wine);
+    color: var(--cream);
+  }
+
+  .btn-ghost {
+    border-color: var(--pine);
+  }
+
+  .btn-ghost:hover {
+    background: var(--pine);
+    color: var(--cream);
+  }
+
+  .btn:focus-visible,
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .waveform-divider {
+    width: 100%;
+    max-width: 1600px;
+    height: 40px;
+    margin-inline: auto;
+    line-height: 0;
+    display: block;
+  }
+
+  .waveform-divider svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  section {
+    padding: 5rem 0;
+  }
+
+  .section-tint {
+    background: var(--sand);
+    color: var(--ink);
+  }
+
+  .site-header {
+    background: var(--paper);
+    color: var(--ink);
+    z-index: 10;
+    border-bottom: 1px solid #7a2e3a33;
+    position: sticky;
+    top: 0;
+  }
+
+  .header-inner {
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1.1rem;
+    display: flex;
+  }
+
+  .mark {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  nav ul {
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+
+  nav a {
+    color: var(--ink);
+    opacity: 0.75;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  nav a:hover {
+    opacity: 1;
+  }
+
+  .site-footer {
+    background: var(--wine);
+    color: var(--cream);
+    padding-top: 0;
+  }
+
+  .footer-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding-block: 3rem 2rem;
+    display: grid;
+  }
+
+  .footer-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin: 0 0 0.2em;
+  }
+
+  .footer-tagline {
+    margin: 0;
+    opacity: 0.8;
+    font-size: 0.9rem;
+  }
+
+  .footer-inner a {
+    opacity: 0.85;
+    text-decoration: none;
+    color: var(--cream);
+  }
+
+  .footer-inner a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .copyright {
+    font-family: var(--font-mono);
+    opacity: 0.65;
+    padding-bottom: 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  @media (width <= 640px) {
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    nav ul {
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

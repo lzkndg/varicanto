@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { upcomingEvents } from '../data/events';
+import { tracks } from '../data/tracks';
+
+const teaserEvents = upcomingEvents.slice(0, 3);
+const teaserTrack = tracks[0];
+---
+
+<Layout title="Start">
+  <section class="hero section-tint">
+    <div class="container hero-inner">
+      <div class="eyebrow">Vokalensemble</div>
+      <h1>Varicanto</h1>
+      <p class="hero-lead">
+        Wir sind ein kleines Vokalensemble aus Liechtenstein und der Region – verbunden
+        durch die Freude am mehrstimmigen Gesang.
+      </p>
+      <p class="hero-lead">
+        Unser Repertoire reicht von traditionellen Weihnachtsliedern bis zu neuen Klängen –
+        <em>vari</em>iert, wie unser Name es verspricht.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="/auftritte/">Nächste Auftritte</a>
+        <a class="btn btn-ghost" href="/musik/">Musik hören</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="container intro-grid">
+      <div>
+        <h2>Anfragen & Auftritte</h2>
+        <p>
+          Planen Sie eine Weihnachtsfeier, einen Gottesdienst, eine Hochzeit oder einen
+          Firmenanlass? Gerne umrahmen wir Ihren Anlass musikalisch und bereiten Ihren
+          Gästen mit unserem Gesang eine Freude.
+        </p>
+        <p>Melden Sie sich bei uns → <a href="mailto:info@varicanto.li">info@varicanto.li</a></p>
+      </div>
+      <div class="listen-card">
+        <p class="eyebrow">Jetzt reinhören</p>
+        <p class="listen-title">{teaserTrack.title}</p>
+        <audio controls preload="none" src={`/audio/${teaserTrack.file}`}></audio>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tint events-teaser">
+    <div class="container">
+      <h2>Nächste Auftritte</h2>
+      {teaserEvents.length > 0 ? (
+        <ol class="event-list">
+          {teaserEvents.map((event) => (
+            <li>
+              <span class="event-date">{event.date}</span>
+              <span class="event-title">{event.title}</span>
+              <span class="event-place">{event.place}</span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">
+          Aktuell sind keine Auftritte öffentlich gelistet – schaut bald wieder vorbei.
+        </p>
+      )}
+      <a class="btn" href="/auftritte/">Alle Auftritte ansehen</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: 6rem 5rem;
+  }
+
+  .hero-inner {
+    max-width: 700px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-style: italic;
+    line-height: 0.95;
+    margin-block: 0.2em 0.6em;
+  }
+
+  .hero-lead {
+    font-size: 1.1rem;
+    max-width: 46ch;
+  }
+
+  .hero-lead em {
+    color: var(--wine);
+    font-style: italic;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    display: flex;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    display: grid;
+  }
+
+  .intro-grid a {
+    color: var(--wine);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .intro-grid a:hover {
+    text-decoration: underline;
+  }
+
+  .listen-card {
+    background: var(--cream);
+    border: 1px solid var(--sand-deep);
+    border-radius: 4px;
+    padding: 1.75rem;
+  }
+
+  .listen-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.3em 0 1em;
+  }
+
+  .listen-card audio {
+    width: 100%;
+  }
+
+  .events-teaser h2 {
+    margin-bottom: 2rem;
+  }
+
+  .empty-state {
+    opacity: 0.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .event-list {
+    border-top: 1px solid #241d2b26;
+    margin: 0 0 2.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .event-list li {
+    border-bottom: 1px solid #241d2b26;
+    grid-template-columns: 140px 1fr auto;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    display: grid;
+  }
+
+  .event-date {
+    font-family: var(--font-mono);
+    color: var(--wine);
+    font-size: 0.85rem;
+  }
+
+  .event-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .event-place {
+    color: var(--plum);
+    opacity: 0.9;
+  }
+
+  @media (width <= 780px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+    .event-list li {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>
