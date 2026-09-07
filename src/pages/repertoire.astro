@@ -1,14 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { tracks } from '../data/tracks';
+import { videos } from '../data/videos';
 ---
 
 <Layout title="Musik">
   <section class="page-hero section-tint">
     <div class="container">
-      <div class="eyebrow">Musik</div>
+      <div class="eyebrow">Repertoire</div>
       <h1>Aufnahmen</h1>
-      <p class="lead">Fünf Lieder, aufgenommen zur Weihnachtszeit 2022.</p>
+      <p class="lead">
+        Wie unser Name <em>Varicanto</em> (variare: verändern, cantare: singen) sagt, singen wir Lieder verschiedener Musikarten und Sprachen. 
+      </p>
+      <p>
+        Hier einige Beispiele aus unserem umfangreichen Repertoire:
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <ul class="track-list">
+        {videos.map((video) => (
+          <li class="track">{video.title}</li>
+        ))}
+      </ul>
     </div>
   </section>
 

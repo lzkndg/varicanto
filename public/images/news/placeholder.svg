@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Platzhalterbild">
+  <rect width="800" height="500" fill="#efe4d3"/>
+  <g fill="none" stroke="#b99146" stroke-width="2" opacity="0.5">
+    <circle cx="400" cy="250" r="120"/>
+    <circle cx="400" cy="250" r="170"/>
+  </g>
+  <g fill="#7a2e3a" opacity="0.85">
+    <circle cx="345" cy="300" r="22"/>
+    <circle cx="455" cy="280" r="22"/>
+    <rect x="365" y="180" width="10" height="120" rx="4"/>
+    <rect x="475" y="160" width="10" height="120" rx="4"/>
+    <path d="M365 180 L485 160 L485 190 L365 210 Z"/>
+  </g>
+</svg>

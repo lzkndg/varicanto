@@ -1,0 +1,41 @@
+# Cache control. This file needs mod_expires and mod_headers enabled on
+# the server (standard on Apache shared hosting, which hosttech uses) —
+# if it has no effect, ask hosttech support to confirm those modules
+# are on for your account.
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML: never cache. Content (events, gallery, news) changes and every
+  # visit should get the latest version.
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Static assets: cache for a year. Safe because Astro's build gives
+  # every CSS/JS file a content hash in its filename — a new deploy means
+  # a new filename, so there's no risk of serving something stale.
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+
+  # Images: cache for a month. These live in public/images/ and don't
+  # get hashed filenames, so a shorter lifetime limits how long an old
+  # photo could show after you replace one with the same filename.
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Belt-and-suspenders for HTML: some browsers/proxies respect
+  # Cache-Control over Expires, so set both explicitly.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  <FilesMatch "\.(css|js|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

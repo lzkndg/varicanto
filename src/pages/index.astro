@@ -2,40 +2,57 @@
 import Layout from '../layouts/Layout.astro';
 import { upcomingEvents } from '../data/events';
 import { tracks } from '../data/tracks';
+import { sortedNews, formatNewsDate } from '../data/news';
 
 const teaserEvents = upcomingEvents.slice(0, 3);
 const teaserTrack = tracks[0];
+const teaserNews = sortedNews().slice(0, 2);
 ---
 
 <Layout title="Start">
   <section class="hero section-tint">
     <div class="container hero-inner">
-      <div class="eyebrow">Vokalensemble</div>
-      <h1>Varicanto</h1>
-      <p class="hero-lead">
-        Wir sind ein kleines Vokalensemble aus Liechtenstein und der Region – verbunden
-        durch die Freude am mehrstimmigen Gesang.
-      </p>
-      <p class="hero-lead">
-        Unser Repertoire reicht von traditionellen Weihnachtsliedern bis zu neuen Klängen –
-        <em>vari</em>iert, wie unser Name es verspricht.
-      </p>
-      <div class="hero-actions">
-        <a class="btn" href="/auftritte/">Nächste Auftritte</a>
-        <a class="btn btn-ghost" href="/musik/">Musik hören</a>
+      <div>
+        <div class="eyebrow">Herzlich Willkommen!</div>
+        <h1>Varicanto</h1>
+        <p class="hero-lead">
+          Wir sind ein gemischter Chor aus Liechtenstein und der Region – verbunden
+          durch die Freude am Gesang.
+        </p>
       </div>
+      <img class="hero-image" src="/images/willkommen.jpg" alt="Willkommen bei Varicanto" />
     </div>
   </section>
+
+  {teaserNews.length > 0 && (
+    <section class="news-teaser">
+      <div class="container">
+        <h2>Neuigkeiten</h2>
+        <div class="news-teaser-grid">
+          {teaserNews.map((item) => (
+            <a class="news-card" href="/neuigkeiten/">
+              <img src={item.image} alt={item.imageAlt} loading="lazy" />
+              <div class="news-card-body">
+                <p class="news-card-date">{formatNewsDate(item.date)}</p>
+                <p class="news-card-title">{item.title}</p>
+                <p class="news-card-text">{item.text}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <a class="btn" href="/neuigkeiten/">Alle Neuigkeiten ansehen</a>
+      </div>
+    </section>
+  )}
 
   <section class="intro">
     <div class="container intro-grid">
       <div>
-        <h2>Anfragen & Auftritte</h2>
-        <p>
-          Planen Sie eine Weihnachtsfeier, einen Gottesdienst, eine Hochzeit oder einen
-          Firmenanlass? Gerne umrahmen wir Ihren Anlass musikalisch und bereiten Ihren
-          Gästen mit unserem Gesang eine Freude.
-        </p>
+        <h2>Neue Mitglieder</h2>
+      <p>
+        Bist du interessiert, bei uns mitzusingen? Wir freuen uns über neue Stimmen –
+        melde dich unter <a href="mailto:info@varicanto.li">info@varicanto.li</a>.
+      </p>
         <p>Melden Sie sich bei uns → <a href="mailto:info@varicanto.li">info@varicanto.li</a></p>
       </div>
       <div class="listen-card">
@@ -75,7 +92,17 @@ const teaserTrack = tracks[0];
   }
 
   .hero-inner {
-    max-width: 700px;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    display: grid;
+  }
+
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
   }
 
   .hero h1 {
@@ -178,13 +205,70 @@ const teaserTrack = tracks[0];
     opacity: 0.9;
   }
 
+  .news-teaser h2 {
+    margin-bottom: 2rem;
+  }
+
+  .news-teaser-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    display: grid;
+  }
+
+  .news-card {
+    color: var(--ink);
+    text-decoration: none;
+    display: block;
+  }
+
+  .news-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .news-card-date {
+    font-family: var(--font-mono);
+    color: var(--wine);
+    font-size: 0.8rem;
+    margin: 0 0 0.3em;
+  }
+
+  .news-card-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0 0 0.3em;
+  }
+
+  .news-card-text {
+    margin: 0;
+    opacity: 0.85;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   @media (width <= 780px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+    .hero-image {
+      order: -1;
+    }
     .intro-grid {
       grid-template-columns: 1fr;
     }
     .event-list li {
       grid-template-columns: 1fr;
       gap: 0.25rem;
+    }
+    .news-teaser-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
