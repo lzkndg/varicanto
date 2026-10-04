@@ -6,20 +6,19 @@ import { sortedNews, formatNewsDate } from '../data/news';
 
 const teaserEvents = upcomingEvents.slice(0, 3);
 const teaserTrack = tracks[0];
-const teaserNews = sortedNews().slice(0, 2);
+const teaserNews = sortedNews().slice(0, 4);
 ---
 
 <Layout title="Start">
+  <!-- <section>
+    <div class="container">
+      <img class="title-image" src="/images/logo-singing-quer-beet.png" alt="Varicanto - singing quer beet" />
+
+    </div>
+  </section> -->
   <section class="hero section-tint">
     <div class="container hero-inner">
-      <div>
-        <div class="eyebrow">singing quer beet</div>
-        <h1>Varicanto</h1>
-        <p class="hero-lead">
-          Wir sind ein gemischter Chor aus Liechtenstein und der Region – verbunden
-          durch die Freude am Gesang.
-        </p>
-      </div>
+      <div class=""><h1>Herzlich Willkommen!</h1></div>
       <img class="hero-image" src="/images/willkommen.jpg" alt="Willkommen bei Varicanto" />
     </div>
   </section>
@@ -87,12 +86,14 @@ const teaserNews = sortedNews().slice(0, 2);
 </Layout>
 
 <style>
+
   .hero {
     padding-block: 6rem 5rem;
   }
 
   .hero-inner {
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr;
+    /* grid-template-columns: 1.1fr 1fr; */
     align-items: center;
     gap: 3rem;
     display: grid;
@@ -106,8 +107,8 @@ const teaserNews = sortedNews().slice(0, 2);
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 8vw, 4.5rem);
-    font-style: italic;
+    font-size: clamp(2rem, 8vw, 3rem);
+    /* font-style: italic; */
     line-height: 0.95;
     margin-block: 0.2em 0.6em;
   }
@@ -189,7 +190,7 @@ const teaserNews = sortedNews().slice(0, 2);
   }
 
   .event-date {
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     color: var(--wine);
     font-size: 0.85rem;
   }
@@ -210,7 +211,7 @@ const teaserNews = sortedNews().slice(0, 2);
   }
 
   .news-teaser-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 2.5rem;
     display: grid;
@@ -224,7 +225,7 @@ const teaserNews = sortedNews().slice(0, 2);
 
   .news-card img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 1rem;

@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/url';
+
 interface Props {
   title: string;
   description?: string;
@@ -10,9 +12,9 @@ const {
 } = Astro.props;
 
 const nav = [
-  { href: '/', label: 'Start' },
+  { href: '/', label: 'Home' },
   { href: '/neuigkeiten/', label: 'Neuigkeiten' },
-  { href: '/ueber-uns/', label: 'Über uns' },
+  { href: '/chor/', label: 'Chor' },
   { href: '/termine/', label: 'Termine' },
   { href: '/repertoire/', label: 'Repertoire' },
 ];
@@ -31,18 +33,23 @@ const nav = [
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bitter:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="/" class="mark">Varicanto</a>
-        <nav aria-label="Hauptnavigation">
-          <ul>
-            {nav.map((item) => (
-              <li><a href={item.href}>{item.label}</a></li>
-            ))}
+          <nav aria-label="Hauptnavigation">
+            <ul>
+              {nav.map((item) => (
+                <li><a href={item.href}>{item.label}</a></li>
+              ))}
           </ul>
         </nav>
+        <div class="header-logo">
+          <a href="/"><img class="title-image" src={ withBase('/images/logo-singing-quer-beet.png') } alt="Varicanto Logo" /></a>
+        </div>
       </div>
     </header>
 
@@ -123,7 +130,9 @@ const nav = [
     --cream: #f3ead9;
     --pine: #3f5a4d;
     --plum: #55465e;
-    --font-display: 'Fraunces', Georgia, serif;
+
+    --font-display: 'Montserrat', sans-serif;
+    /* --font-display: 'Fraunces', Georgia, serif; */
     --font-body: 'Work Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
     --radius: 2px;
@@ -158,9 +167,15 @@ const nav = [
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
+    color: var(--wine);
     letter-spacing: -0.01em;
     margin: 0 0 0.5em;
     font-weight: 600;
+  }
+
+  h2 {
+    font-weight: 500;
+    /* font-size:  */
   }
 
   a {
@@ -178,7 +193,7 @@ const nav = [
   }
 
   .eyebrow {
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--wine);
@@ -244,6 +259,11 @@ const nav = [
     color: var(--ink);
   }
 
+  .title-image {
+    height: 5em;
+    width: auto;
+  }
+
   .site-header {
     background: var(--paper);
     color: var(--ink);
@@ -255,10 +275,15 @@ const nav = [
 
   .header-inner {
     justify-content: space-between;
+    /* justify-content: flex-end; */
     align-items: center;
     padding-block: 1.1rem;
     display: flex;
   }
+
+  /* .header-logo {
+    align: end;
+  } */
 
   .mark {
     font-family: var(--font-display);
@@ -336,9 +361,14 @@ const nav = [
   @media (width <= 640px) {
     .header-inner {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 0.75rem;
     }
+
+    .title-image {
+      display: none;
+    }
+
     nav ul {
       flex-wrap: wrap;
       gap: 1.25rem;
