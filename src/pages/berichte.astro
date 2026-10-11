@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { berichte } from '../data/berichte';
+---
+
+<Layout title="Berichte">
+  <section class="page-hero section-tint">
+    <div class="container">
+      <h2>Berichte</h2>
+      <!-- <div class="eyebrow">Berichte</div> -->
+      <!-- <h1>In den Medien</h1> -->
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      {berichte.map((bericht) => (
+        <div class="bericht">
+          <h3>{bericht.title}</h3>
+          <img src={bericht.image} />
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding-block: 4rem 3rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-style: italic;
+    margin: 0.2em 0 0;
+  }
+
+  .bericht {
+    margin-bottom: 25px;
+  }
+</style>

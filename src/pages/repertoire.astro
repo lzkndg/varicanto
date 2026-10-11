@@ -7,8 +7,9 @@ import { videos } from '../data/videos';
 <Layout title="Musik">
   <section class="page-hero section-tint">
     <div class="container">
-      <div class="eyebrow">Repertoire</div>
-      <h1>Aufnahmen</h1>
+      <h2>Repertoire</h2>
+      <!-- <div class="eyebrow">Repertoire</div> -->
+      <!-- <h1>Einige Aufnahmen</h1> -->
       <p class="lead">
         Wie unser Name <em>Varicanto</em> (variare: verändern, cantare: singen) sagt, singen wir Lieder verschiedener Musikarten und Sprachen. 
       </p>
@@ -22,7 +23,13 @@ import { videos } from '../data/videos';
     <div class="container">
       <ul class="track-list">
         {videos.map((video) => (
-          <li class="track">{video.title}</li>
+          <li class="track">{video.title}<br />
+            <iframe width="560" height="315"
+              src={video.url}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+            />
+          </li>
         ))}
       </ul>
     </div>

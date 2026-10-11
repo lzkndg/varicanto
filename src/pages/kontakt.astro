@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Kontakt">
+  <section class="page-hero section-tint">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <!-- <div class="eyebrow">Kontakt</div> -->
+      <!-- <h1>Trete in Verbindung</h1> -->
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="success-box" id="success">
+        <p>Ihre Anfrage wurde erfolgreich verschickt.</p>
+      </div>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="965e4366-b793-4ec1-a812-ccacdf528618">
+        <label for="name">Name</label>
+        <input 
+          id="name" 
+          class="input" 
+          type="text" 
+          name="name"
+          placeholder="Name eingeben"
+          required>
+        <label for="email">E-Mail Adresse</label>
+        <input 
+          id="email" 
+          class="input" 
+          type="email" 
+          name="email" 
+          placeholder="E-Mail Adresse eingeben"
+          required>
+        <label for="message">Text</label>
+        <textarea 
+          id="message" 
+          class="input" 
+          name="message" 
+          required 
+          placeholder="Was möchten Sie uns mitteilen?">
+        </textarea>
+        <div class="h-captcha" data-captcha="true"></div>
+        <button class="btn" type="submit">Absenden</button>
+      </form>
+    </div>
+  </section>
+  <section>
+    <div class="container impressum">
+
+      
+      <h5>Haftungsausschluss</h5>
+      
+      <p>Der Autor übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und  Vollständigkeit der Informationen.
+        Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der  Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen.
+        Alle  Angebote sind unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile  der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
+
+      <h5>Links</h5>
+
+      <p>Verweise und Links auf Webseiten Dritter liegen ausserhalb unseres Verantwortungsbereichs. Es wird jegliche Verantwortung für solche Webseiten  abgelehnt. Der Zugriff und die Nutzung solcher Webseiten erfolgen auf eigene Gefahr des Nutzers oder der Nutzerin.</p>
+
+      <h5>Eingebettete Inhalte</h5>
+
+      Beiträge auf dieser Website können eingebettete Inhalte beinhalten (z. B. Videos, Bilder, Beiträge etc.). Eingebettete Inhalte von anderen Websites verhalten sich exakt so, als ob der Besucher die andere Website besucht hätte.Diese Websites können Daten über dich sammeln, Cookies benutzen, zusätzliche Tracking-Dienste von Dritten einbetten und deine Interaktion mit diesem eingebetteten Inhalt aufzeichnen, inklusive deiner Interaktion mit dem eingebetteten Inhalt, falls du ein Konto hast und auf dieser Website angemeldet bist.
+
+      <h5>Urheberrecht</h5>
+      <p>Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich dem Verein Varicanto oder den speziell genannten Rechtsinhabern. Ausgeschlossen hiervon sind Verlinkungen zu anderen Webseiten. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträger im Voraus einzuholen.</p>
+
+      <h5>Datenschutz</h5>
+
+      <p>
+        Gestützt auf Artikel 13 der schweizerischen Bundesverfassung  und die datenschutzrechtlichen Bestimmungen des Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Wir halten diese Bestimmungen ein. Persönliche Daten werden streng vertraulich behandelt und weder an Dritte verkauft noch weiter gegeben.
+        In enger Zusammenarbeit mit unseren Hosting-Providern bemühen wir uns, die Datenbanken so gut wie möglich vor fremden Zugriffen, Verlusten, Missbrauch oder vor Fälschung zu schützen.
+        Beim Zugriff auf unsere Webseiten werden folgende Daten in  Logfiles gespeichert: IP-Adresse, Datum, Uhrzeit, Browser-Anfrage und allg. übertragene Informationen zum Betriebssystem resp. Browser. Diese Nutzungsdaten  bilden die Basis für statistische, anonyme Auswertungen, so dass Trends erkennbar sind, anhand derer wir unsere Angebote entsprechend verbessern  können.
+      </p>
+
+  </div>
+</section>
+</Layout>
+
+<!-- Captcha Setup -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
+
+<style>
+  .page-hero {
+    padding-block: 4rem 3rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-style: italic;
+    margin: 0.2em 0 0;
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .prose p {
+    margin-bottom: 1.3em;
+  }
+
+  .prose a {
+    color: var(--wine);
+  }
+
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
+  }
+
+  input, textarea {
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    font-family: sans-serif;
+    display: block;
+  }
+
+  .success-box {
+    margin: -25px 0 50px 0;
+    padding: 0 15px;
+    background-color: var(--pine-light);
+    border: 1px solid #ccc;
+    display: none;
+  }
+
+  :target {
+
+    display: block;
+  }
+
+</style>

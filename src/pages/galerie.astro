@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { galerie } from '../data/fotos';
+---
+
+<Layout title="Galerie">
+  <section class="page-hero section-tint">
+    <div class="container">
+      <h2>Galerie</h2>
+      <!-- <div class="eyebrow">Galerie</div> -->
+      <!-- <h1>Fotos unserer Anlässe</h1> -->
+    </div>
+  </section>
+
+  
+  {galerie.map((g, j) => (
+    
+    <section class="container"> 
+      <h2>{g.titel}</h2>
+      <div class="container gallery-grid">
+        {g.fotos.map((photo, i) => (
+          <a href={`#foto-${j}-${i}`} class="gallery-item" aria-label={`${photo.alt} vergrössern`}>
+            <img src={photo.src} alt={photo.alt} loading="lazy" />
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <div>
+    {g.fotos.map((photo, i) => {
+      const prev = (i - 1 + g.fotos.length) % g.fotos.length;
+      const next = (i + 1) % g.fotos.length;
+      return (
+        <div class="lightbox" id={`foto-${j}-${i}`}>
+          <a href="#" class="lightbox-backdrop" aria-label="Schliessen"></a>
+          <a href="#" class="lightbox-close" aria-label="Schliessen">✕</a>
+          {g.fotos.length > 1 && (
+            <>
+            <a href={`#foto-${j}-${prev}`} class="lightbox-nav lightbox-prev" aria-label="Vorheriges Bild">‹</a>
+              <a href={`#foto-${j}-${next}`} class="lightbox-nav lightbox-next" aria-label="Nächstes Bild">›</a>
+              </>
+              )}
+          <img src={photo.src} alt={photo.alt} />
+        </div>
+      );
+    })}
+    </div>
+
+  ))}
+
+</Layout>
+
+<style>
+  .page-hero {
+    padding-block: 4rem 3rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-style: italic;
+    margin: 0.2em 0 0;
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .prose p {
+    margin-bottom: 1.3em;
+  }
+
+  .prose a {
+    color: var(--wine);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    padding-block: 1rem 3rem;
+  }
+  .gallery-item {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.04); }
+
+   /* CSS-only lightbox: hidden until its id matches the URL fragment (:target) */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox:target {
+    display: flex;
+  }
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 30, 24, 0.92);
+  }
+  .lightbox img {
+    position: relative;
+    max-width: 90vw;
+    max-height: 88vh;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--cream);
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    text-decoration: none;
+    line-height: 1;
+    z-index: 1;
+  }
+  .lightbox-close:hover { color: var(--brass-light); }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cream);
+    font-size: 2.5rem;
+    line-height: 1;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    z-index: 1;
+    user-select: none;
+  }
+  .lightbox-nav:hover { color: var(--brass-light); }
+  .lightbox-prev { left: 1rem; }
+  .lightbox-next { right: 1rem; }
+
+  @media (max-width: 640px) {
+    .lightbox-nav { font-size: 2rem; padding: 0.4rem 0.5rem; }
+  }
+
+
+</style>
