@@ -13,9 +13,9 @@ import { galerie } from '../data/fotos';
   
   {galerie.map((g, j) => (
     
-    <section class="container"> 
+    <section class="container container-galerie"> 
       <h2>{g.titel}</h2>
-      <div class="container gallery-grid">
+      <div class="container-galerie gallery-grid">
         {g.fotos.map((photo, i) => (
           <a href={`#foto-${j}-${i}`} class="gallery-item" aria-label={`${photo.alt} vergrössern`}>
             <img src={photo.src} alt={photo.alt} loading="lazy" />
@@ -49,23 +49,15 @@ import { galerie } from '../data/fotos';
 </Layout>
 
 <style>
-  .prose {
-    max-width: 65ch;
-  }
-
-  .prose p {
-    margin-bottom: 1.3em;
-  }
-
-  .prose a {
-    color: var(--wine);
+  .container-galerie {
+    padding: 1rem;
   }
 
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
-    padding-block: 1rem 3rem;
+    padding-block: 1rem .1rem;
   }
   .gallery-item {
     display: block;
