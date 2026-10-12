@@ -21,3 +21,11 @@ npm run preview  # preview the production build
 ## Kontakt
 
 Formular Setup using [Web3Forms](https://app.web3forms.com/forms/965e4366-b793-4ec1-a812-ccacdf528618/setup).
+
+## Alte Seite Webflow
+
+CNAME Record im DNS entfernt: 
+
+Host: www.varicanto.li
+Canonical Name: cdn.webflow.com
+TTL: 3600
