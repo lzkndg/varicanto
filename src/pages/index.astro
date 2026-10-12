@@ -5,8 +5,9 @@ import { tracks } from '../data/tracks';
 import { sortedNews, formatNewsDate } from '../data/news';
 
 const teaserEvents = upcomingEvents.slice(0, 3);
-const teaserTrack = tracks[0];
-const teaserNews = sortedNews().slice(0, 4);
+const teaserTrack = tracks[3];
+// const teaserNews = sortedNews().slice(0, 4);
+const items = sortedNews();
 ---
 
 <Layout title="Start">
@@ -16,43 +17,46 @@ const teaserNews = sortedNews().slice(0, 4);
 
     </div>
   </section> -->
-  <section class="hero section-tint">
+  <section class="hero">
     <div class="container hero-inner">
       <div class=""><h1>Herzlich Willkommen!</h1></div>
       <img class="hero-image" src="/images/willkommen.jpg" alt="Willkommen bei Varicanto" />
     </div>
   </section>
 
-  {teaserNews.length > 0 && (
-    <section class="news-teaser">
-      <div class="container">
-        <h2>Neuigkeiten</h2>
-        <div class="news-teaser-grid">
-          {teaserNews.map((item) => (
-            <a class="news-card" href="/neuigkeiten/">
-              <img src={item.image} alt={item.imageAlt} loading="lazy" />
-              <div class="news-card-body">
-                <p class="news-card-date">{formatNewsDate(item.date)}</p>
-                <p class="news-card-title">{item.title}</p>
-                <p class="news-card-text">{item.text}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-        <a class="btn" href="/neuigkeiten/">Alle Neuigkeiten ansehen</a>
-      </div>
-    </section>
-  )}
+    <section>
+    <div class="container">
+      <div><h1>Neuigkeiten</h1></div>
+      {items.length > 0 ? (
+        <ul class="news-list">
+          {items.map((item) => (
+            <li class="news-item">
+              <div>
+                <img src={item.image} alt={item.imageAlt} loading="lazy" />
 
-  <section class="intro">
+              </div>
+              <div class="news-body">
+                <p class="news-date">{formatNewsDate(item.date)}</p>
+                <h3 class="news-title">{item.title}</h3>
+                <p class="news-text">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="empty-state">Aktuell gibt es keine Neuigkeiten.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="intro section-tint">
     <div class="container intro-grid">
       <div>
         <h2>Neue Mitglieder</h2>
-      <p>
-        Bist du interessiert, bei uns mitzusingen? Wir freuen uns über neue Stimmen –
-        melde dich unter <a href="mailto:info@varicanto.li">info@varicanto.li</a>.
-      </p>
-        <p>Melden Sie sich bei uns → <a href="mailto:info@varicanto.li">info@varicanto.li</a></p>
+        <p>
+          Bist du interessiert, bei uns mitzusingen? Wir freuen uns über neue Stimmen –
+          melde dich unter <a href="mailto:info@varicanto.li">info@varicanto.li</a>.
+        </p>
       </div>
       <div class="listen-card">
         <p class="eyebrow">Jetzt reinhören</p>
@@ -62,7 +66,7 @@ const teaserNews = sortedNews().slice(0, 4);
     </div>
   </section>
 
-  <section class="section-tint events-teaser">
+  <section class="events-teaser">
     <div class="container">
       <h2>Nächste Auftritte</h2>
       {teaserEvents.length > 0 ? (
@@ -206,52 +210,47 @@ const teaserNews = sortedNews().slice(0, 4);
     opacity: 0.9;
   }
 
-  .news-teaser h2 {
-    margin-bottom: 2rem;
+    .empty-state {
+    opacity: 0.75;
   }
 
-  .news-teaser-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .news-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 3rem;
+  }
+
+  .news-item {
+    grid-template-columns: 280px 1fr;
     gap: 2rem;
-    margin-bottom: 2.5rem;
     display: grid;
   }
 
-  .news-card {
-    color: var(--ink);
-    text-decoration: none;
-    display: block;
-  }
-
-  .news-card img {
+  .news-item img {
     width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    aspect-ratio: 4 / 3;
   }
 
-  .news-card-date {
+  .news-date {
     font-family: var(--font-mono);
     color: var(--wine);
-    font-size: 0.8rem;
-    margin: 0 0 0.3em;
+    font-size: 0.85rem;
+    margin: 0 0 0.4em;
   }
 
-  .news-card-title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin: 0 0 0.3em;
+  .news-title {
+    margin: 0 0 0.5em;
   }
 
-  .news-card-text {
+  .news-text {
     margin: 0;
-    opacity: 0.85;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    max-width: 60ch;
+    white-space: pre-line;
   }
 
   @media (width <= 780px) {
@@ -268,7 +267,10 @@ const teaserNews = sortedNews().slice(0, 4);
       grid-template-columns: 1fr;
       gap: 0.25rem;
     }
-    .news-teaser-grid {
+  }
+
+  @media (width <= 640px) {
+    .news-item {
       grid-template-columns: 1fr;
     }
   }

@@ -6,8 +6,6 @@ export interface NewsItem {
   imageAlt: string;
 }
 
-// TODO: replace with real news items (and swap the placeholder images
-// in public/images/news/ for real photos).
 export const news: NewsItem[] = [
   {
     date: '2026-09-01',

@@ -3,11 +3,9 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Kontakt">
-  <section class="page-hero section-tint">
+  <section class="page-hero">
     <div class="container">
-      <h2>Kontakt</h2>
-      <!-- <div class="eyebrow">Kontakt</div> -->
-      <!-- <h1>Trete in Verbindung</h1> -->
+      <h1>Kontakt</h1>
     </div>
   </section>
 
@@ -40,8 +38,8 @@ import Layout from '../layouts/Layout.astro';
           id="message" 
           class="input" 
           name="message" 
-          required 
-          placeholder="Was möchten Sie uns mitteilen?">
+          placeholder="Was möchten Sie uns mitteilen?"
+          required>
         </textarea>
         <div class="h-captcha" data-captcha="true"></div>
         <button class="btn" type="submit">Absenden</button>
@@ -85,16 +83,6 @@ import Layout from '../layouts/Layout.astro';
 <script src="https://web3forms.com/client/script.js" async defer></script>
 
 <style>
-  .page-hero {
-    padding-block: 4rem 3rem;
-  }
-
-  .page-hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3rem);
-    font-style: italic;
-    margin: 0.2em 0 0;
-  }
-
   .prose {
     max-width: 65ch;
   }
