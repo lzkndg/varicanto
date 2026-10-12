@@ -27,6 +27,10 @@ const items = sortedNews();
     <section>
     <div class="container">
       <div><h1>Neuigkeiten</h1></div>
+      <div class="flyer">
+        <img src="/images/flyer_projektsingen_2026.png" alt="Unterstütze uns im Projektsingen, Konzert im Vaduzersaal am 24. April 2027">
+      </div>
+
       {items.length > 0 ? (
         <ul class="news-list">
           {items.map((item) => (
@@ -91,20 +95,24 @@ const items = sortedNews();
 
 <style>
 
+  .flyer {
+    padding: 0 0 2rem 0;
+  }
+
   .hero {
-    padding-block: 6rem 5rem;
+    padding-block: 15rem 5rem;
   }
 
   .hero-inner {
     grid-template-columns: 1fr;
     /* grid-template-columns: 1.1fr 1fr; */
-    align-items: center;
-    gap: 3rem;
-    display: grid;
+    /* align-items: center; */
+    /* gap: 5rem; */
+    /* display: grid; */
   }
 
   .hero-image {
-    max-width: 80%;
+    /* max-width: 80%; */
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 4px;
@@ -254,9 +262,14 @@ const items = sortedNews();
   }
 
   @media (width <= 780px) {
+    .hero {
+      padding-block: 3rem 5rem;
+    }
+
     .hero-inner {
       grid-template-columns: 1fr;
     }
+
     .hero-image {
       order: -1;
     }
