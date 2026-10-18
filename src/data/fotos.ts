@@ -52,6 +52,10 @@ export const konzerte2018: Foto[] = [
     { alt: '', src: '/images/galerie/2018-2.jpg'},
 ]
 
+export const sonstiges: Foto[] = [
+    { alt: '', src: '/images/galerie/2026-minigolf.jpg'},
+]
+
 
 export const galerie: Galerie[] = [
     { titel: 'Konzert Kirche Widnau 2025', fotos: widnau2025 },
@@ -60,4 +64,5 @@ export const galerie: Galerie[] = [
     { titel: 'Alpgottesdienst Pradamee 2022', fotos: alpgottesdienst2022 },
     { titel: 'Weihnachtskonzert 2021: Bach Meets Pop and Jazz', fotos: konzert2021 },
     { titel: 'Konzerte 2018', fotos: konzerte2018 },
+    { titel: 'Ausflüge und Sonstiges', fotos: sonstiges },
 ]
