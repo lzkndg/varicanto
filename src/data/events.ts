@@ -8,11 +8,11 @@ export interface Event {
 // TODO: replace with real upcoming/past performances.
 export const upcomingEvents: Event[] = [
   {
-    date: "Samstag, 14. November 2026", 
+    date: "Samstag, 17. April 2027",
     time: "14:30 Uhr",
-    title: "Auftritt im LAK", 
+    title: "Auftritt im LAK",
     place: "St. Florin, Vaduz"
-  }, 
+  },  
   {
     date: "Samstag, 24. April 2027",
     time: "19:30 Uhr",
@@ -22,6 +22,12 @@ export const upcomingEvents: Event[] = [
 ];
 
 export const pastEvents: Event[] = [
+ {
+    date: "Samstag, 14. November 2026", 
+    time: "14:30 Uhr",
+    title: "Auftritt im LAK", 
+    place: "St. Florin, Vaduz"
+  }, 
    {
     date: "Sonntag, 29. März 2026",
     time: "14:30 Uhr",
