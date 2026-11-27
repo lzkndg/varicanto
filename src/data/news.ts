@@ -11,7 +11,7 @@ export const news: NewsItem[] = [
     date: '2026-09-01',
     title: 'Projektsingen Frühling 2027',
     text: 'Für den Frühling 2027 bereiten wir ein Projektsingen mit zahlreichen Sängern vor. Wir werden locker und sicher geführt und bekommen so unser tolles Programm kompetent vermittelt. Dank der schwungvollen Leitung von Marianne wird unsere Freude am Singen gefestigt. Bist du interessiert? Wir vier wollen dich motivieren, melde dich und sag es weiter.\nWir sind sicher, es wird ein richtig gelungenes Konzert.  Singen setzt die gesunden Glückshormone frei und regt den Geist an. Lass dich mitreissen.\nVom 18. Januar 2027 bis April proben wir wöchentlich konzentriert. Am 24. April 2027 findet das Konzert im Vaduzersaal statt. Also, was lässt dich zögern mal reinzuschauen und mitzumachen? Wir freuen uns auf dich.',
-    image: '/images/news/vorstand.jpg',
+    image: '/images/news/vorstand2.jpg',
     imageAlt: 'Vereinsvorstand',
   },
   {
